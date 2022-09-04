@@ -28,3 +28,28 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+tasks {
+    processResources {
+        duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
+    }
+}
+
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources","src/main/resources-env/${profile}"
+        }
+    }
+}
+
+bootRun {
+    if(profile != 'local' && profile != 'alpha' && profile != 'beta' && profile !='real'){
+        project.logger.error("Unknown profile {}", profile)
+        throw new GradleException("Unknown profile " + profile)
+    }
+    systemProperty "spring.profiles.active", profile
+    project.logger.lifecycle("Current profile: {}", profile)
+}
