@@ -6,3 +6,4 @@
 |-|-|
 | 고성빈 | kosb7544@gmail.com |
 | 문상영 | durfbgksmsskfro@gmail.com |
+| 권기윤 | ceasar0830@gmail.com |
