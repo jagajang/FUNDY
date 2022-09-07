@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>FUNDY : Login</title>
+</head>
+<h2> FUNDY </h2>
+<form method="post" th:action="@{/loginPost}">
+  <label for="hereId">ID:</label><br>
+  <input id = "hereId" type="text" name="user_id" value=""><br>
+
+  <label for="herePwd">PASSWORD:</label><br>
+  <input id="herePwd" type="text" name="user_pwd" value=""><br><br>
+
+  <input type="submit" name="submit" value="login">
+  <input type="button" name="submit" value="sign up">
+</form>
+</body>
+</html>
