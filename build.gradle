@@ -17,44 +17,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     implementation 'org.projectlombok:lombok:1.18.24'
-    implementation 'org.springframework.security:spring-security-core:5.7.3'
-    implementation 'org.springframework.security:spring-security-web:5.7.3'
-    implementation 'org.springframework.security:spring-security-config:5.7.3'
-    implementation 'org.springframework.security:spring-security-test:5.7.3'
-    implementation 'org.springframework.boot:spring-boot-starter-security:2.7.3'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     implementation 'org.slf4j:slf4j-api:1.7.7'
     implementation 'ch.qos.logback:logback-classic:1.1.5'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.3'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
-}
-
-tasks {
-    processResources {
-        duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
-    }
-}
-
-ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
-
-sourceSets {
-    main {
-        resources {
-            srcDirs "src/main/resources","src/main/resources-env/${profile}"
-        }
-    }
-}
-
-bootRun {
-    if(profile != 'local' && profile != 'alpha' && profile != 'beta' && profile !='real'){
-        project.logger.error("Unknown profile {}", profile)
-        throw new GradleException("Unknown profile " + profile)
-    }
-    systemProperty "spring.profiles.active", profile
-    project.logger.lifecycle("Current profile: {}", profile)
 }
